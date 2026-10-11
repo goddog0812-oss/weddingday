@@ -481,64 +481,48 @@
             </div>
         </section>
 
-<!-- 4, 5, 8. 智能表單與隱藏式 Iframe 提交技術 -->
-        <section id="rsvp">
-            <h2 class="section-title">RSVP 回函</h2>
-            
-            <!-- 5. 隱藏式 Iframe 技術：名稱與 target 互相呼應 -->
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { alert('感謝您的填寫，回函已成功送出！'); document.getElementById('rsvpForm').reset(); document.getElementById('conditionalFields').style.display='none'; submitted=false; }"></iframe>
+ <!-- 6. Smart RSVP Form with Hidden Iframe Submission -->
+        <section id="rsvp" class="py-12">
+            <h2 class="text-center font-cormorant text-3xl sm:text-4xl text-morandi-warm tracking-widest mb-10">RSVP 出席回函</h2>
 
-            <!-- 使用您提供的正確 Google 表單 action 網址，配合 entry 欄位 -->
-            <form class="rsvp-form" id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSc2MUUup08OldAfG4l5odxc6iHvbi-nuqgA2ZLY2T7CDU4I1A/formResponse?usp=pp_url&entry.218810663=AAA&entry.1677472434=0912345678&entry.412895611=%E7%94%B7%E6%96%B9%E5%AE%B6%E4%BA%BA%E8%A6%AA%E6%88%9A&entry.375819377=22&entry.1892537591=%E5%85%A8%E6%95%B8%E8%91%B7%E9%A3%9F&entry.1667799347=2%E5%BC%B5&entry.1093798808=%E7%B4%99%E6%9C%AC%E5%96%9C%E5%B8%96&entry.953212409=DDD&entry.1668080662=BBB" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
-                
-                <!-- 基礎輸入框（純空，中英雙語標籤） -->
-                <div class="form-group">
-                    <label for="entry.1">姓名 NAME</label>
-                    <input type="text" id="entry.1" name="entry.1" required placeholder="">
+            <!-- Hidden Iframe Target -->
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){ showSuccessMessage(); }"></iframe>
+
+            <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSc2MUUup08OldAfG4l5odxc6iHvbi-nuqgA2ZLY2T7CDU4I1A/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;" class="bg-white rounded-2xl p-6 sm:p-10 shadow-lg shadow-morandi-sage/10 border border-morandi-gray/40">
+
+                <!-- 姓名 NAME -->
+                <div class="mb-6">
+                    <label for="entry.218810663" class="block font-semibold text-xs sm:text-sm text-morandi-text mb-2 tracking-wider">姓名 NAME <span class="text-red-400">*</span></label>
+                    <input type="text" id="entry.218810663" name="entry.218810663" required placeholder="" class="w-full px-4 py-3 rounded-lg border border-morandi-gray bg-morandi-bg focus:outline-none focus:border-morandi-warm transition-colors">
                 </div>
 
-                <div class="form-group">
-                    <label for="entry.2">聯絡電話 PHONE NUMBER</label>
-                    <input type="tel" id="entry.2" name="entry.2" required placeholder="">
+                <!-- 聯絡電話 PHONE NUMBER -->
+                <div class="mb-6">
+                    <label for="entry.1677472434" class="block font-semibold text-xs sm:text-sm text-morandi-text mb-2 tracking-wider">聯絡電話 PHONE NUMBER <span class="text-red-400">*</span></label>
+                    <input type="tel" id="entry.1677472434" name="entry.1677472434" required placeholder="" class="w-full px-4 py-3 rounded-lg border border-morandi-gray bg-morandi-bg focus:outline-none focus:border-morandi-warm transition-colors">
                 </div>
 
-                <div class="form-group">
-                    <label for="entry.3">參加午宴人數 ATTENDANCE COUNT (午宴)</label>
-                    <select id="entry.3" name="entry.3" required onchange="handleAttendanceChange(this)">
+                <!-- 參加午宴人數 ATTENDANCE COUNT -->
+                <div class="mb-6">
+                    <label for="entry.375819377" class="block font-semibold text-xs sm:text-sm text-morandi-text mb-2 tracking-wider">參加午宴人數 ATTENDANCE COUNT <span class="text-red-400">*</span></label>
+                    <select id="entry.375819377" name="entry.375819377" required onchange="handleAttendanceChange(this)" class="w-full px-4 py-3 rounded-lg border border-morandi-gray bg-morandi-bg focus:outline-none focus:border-morandi-warm transition-colors">
                         <option value="" disabled selected>請選擇人數</option>
-                        <option value="0">0</option>
+                        <option value="0">0 (無法出席)</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
 
-                <!-- 8. 智能表單邏輯：參加人數 > 0 時才顯示以下動態欄位 -->
+                <!-- SMART CONDITIONAL FIELDS (Triggered when Attendance > 0) -->
                 <div id="conditionalFields" class="conditional-field">
-                    
-                    <div class="form-group">
-                        <label for="entry.4">飲食需求 DIETARY REQUIREMENTS</label>
-                        <select id="entry.4" name="entry.4">
-                            <option value="葷食" selected>葷食</option>
-                            <option value="素食">素食</option>
-                            <option value="其他">其他特殊飲食需求</option>
-                        </select>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="entry.5">是否需要兒童椅 HIGH CHAIR NEEDED</label>
-                        <select id="entry.5" name="entry.5">
-                            <option value="不需要" selected>不需要</option>
-                            <option value="1張">1張</option>
-                            <option value="2張">2張</option>
-                            <option value="3張">3張</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="entry.6">賓客身份 RELATIONSHIP</label>
-                        <select id="entry.6" name="entry.6">
+                    <!-- 賓客身份 RELATIONSHIP -->
+                    <div class="mb-6">
+                        <label for="entry.412895611" class="block font-semibold text-xs sm:text-sm text-morandi-text mb-2 tracking-wider">賓客身份 RELATIONSHIP</label>
+                        <select id="entry.412895611" name="entry.412895611" class="w-full px-4 py-3 rounded-lg border border-morandi-gray bg-morandi-bg focus:outline-none focus:border-morandi-warm transition-colors">
                             <option value="男方家人親戚" selected>男方家人親戚</option>
                             <option value="男方長官同事">男方長官同事</option>
                             <option value="男方朋友">男方朋友</option>
@@ -548,70 +532,116 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="entry.7">紙本/電子喜帖 WEDDING INVITATION</label>
-                        <select id="entry.7" name="entry.7">
+                    <!-- 飲食需求 DIETARY REQUIREMENTS -->
+                    <div class="mb-6">
+                        <label for="entry.1892537591" class="block font-semibold text-xs sm:text-sm text-morandi-text mb-2 tracking-wider">飲食需求 DIETARY REQUIREMENTS</label>
+                        <select id="entry.1892537591" name="entry.1892537591" class="w-full px-4 py-3 rounded-lg border border-morandi-gray bg-morandi-bg focus:outline-none focus:border-morandi-warm transition-colors">
+                            <option value="全數葷食" selected>全數葷食</option>
+                            <option value="含全素需求">含全素需求</option>
+                        </select>
+                    </div>
+
+                    <!-- 是否需要兒童椅 HIGH CHAIR NEEDED -->
+                    <div class="mb-6">
+                        <label for="entry.1667799347" class="block font-semibold text-xs sm:text-sm text-morandi-text mb-2 tracking-wider">是否需要兒童椅 HIGH CHAIR NEEDED</label>
+                        <select id="entry.1667799347" name="entry.1667799347" class="w-full px-4 py-3 rounded-lg border border-morandi-gray bg-morandi-bg focus:outline-none focus:border-morandi-warm transition-colors">
+                            <option value="不需要" selected>不需要</option>
+                            <option value="1張">1張</option>
+                            <option value="2張">2張</option>
+                            <option value="3張">3張</option>
+                        </select>
+                    </div>
+
+                    <!-- 紙本/電子喜帖 WEDDING INVITATION -->
+                    <div class="mb-6">
+                        <label for="entry.1093798808" class="block font-semibold text-xs sm:text-sm text-morandi-text mb-2 tracking-wider">紙本/電子喜帖 WEDDING INVITATION</label>
+                        <select id="entry.1093798808" name="entry.1093798808" class="w-full px-4 py-3 rounded-lg border border-morandi-gray bg-morandi-bg focus:outline-none focus:border-morandi-warm transition-colors">
                             <option value="電子喜帖" selected>電子喜帖</option>
                             <option value="紙本喜帖">紙本喜帖</option>
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="entry.8">紙本寄送地址(含郵遞區號)或Email ADDRESS / EMAIL</label>
-                        <input type="text" id="entry.8" name="entry.8" placeholder="">
+                    <!-- 紙本寄送地址(含郵遞區號)或Email ADDRESS / EMAIL -->
+                    <div class="mb-6">
+                        <label for="entry.953212409" class="block font-semibold text-xs sm:text-sm text-morandi-text mb-2 tracking-wider">紙本寄送地址(含郵遞區號)或Email ADDRESS / EMAIL</label>
+                        <input type="text" id="entry.953212409" name="entry.953212409" placeholder="" class="w-full px-4 py-3 rounded-lg border border-morandi-gray bg-morandi-bg focus:outline-none focus:border-morandi-warm transition-colors">
                     </div>
 
-                    <div class="form-group">
-                        <label for="entry.9">給新人的話 BLESSING</label>
-                        <textarea id="entry.9" name="entry.9" rows="4" placeholder=""></textarea>
+                    <!-- 給新人的話 BLESSING -->
+                    <div class="mb-6">
+                        <label for="entry.1668080662" class="block font-semibold text-xs sm:text-sm text-morandi-text mb-2 tracking-wider">給新人的話 BLESSING</label>
+                        <textarea id="entry.1668080662" name="entry.1668080662" rows="4" placeholder="" class="w-full px-4 py-3 rounded-lg border border-morandi-gray bg-morandi-bg focus:outline-none focus:border-morandi-warm transition-colors"></textarea>
                     </div>
 
                 </div>
 
-                <button type="submit" class="submit-btn">確認送出 SUBMIT</button>
+                <button type="submit" class="w-full py-4 rounded-xl bg-morandi-warm hover:bg-morandi-warmHover text-white font-semibold tracking-widest transition-all duration-300 shadow-md hover:shadow-lg">
+                    確認送出 SUBMIT
+                </button>
             </form>
+
+            <!-- Success Alert Banner (Hidden initially) -->
+            <div id="successBanner" class="hidden mt-6 p-6 rounded-xl bg-morandi-sage/20 border border-morandi-sage text-center text-morandi-text">
+                <p class="font-semibold text-lg">感謝您的填寫！</p>
+                <p class="text-sm mt-1">出席回函已成功傳送，我們期待在婚禮當天與您相見。</p>
+            </div>
         </section>
 
-    </div>
+    </main>
 
-    <footer>
-        <p>&copy; 2027 LEE-YU-JU & LIU-KAI-YING. All Rights Reserved.</p>
+    <!-- Footer -->
+    <footer class="py-8 text-center text-xs text-morandi-sage tracking-widest border-t border-morandi-gray">
+        <p>&copy; 2027 LEE-YU-JU & LIU-KAI-YING. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <!-- JavaScript 互動與倒數計時邏輯 -->
+    <!-- Interactive Scripts -->
     <script>
         let submitted = false;
 
-        // 7. 摺疊面板互動邏輯
-        function toggleAccordion(button) {
-            button.classList.toggle('active');
-            const body = button.nextElementSibling;
-            if (body.style.maxHeight) {
-                body.style.maxHeight = null;
+        // Accordion Toggle
+        function toggleAccordion(btn) {
+            const content = document.getElementById('accordion-content');
+            const icon = document.getElementById('accordion-icon');
+            
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                icon.classList.remove('rotate-180');
             } else {
-                body.style.maxHeight = body.scrollHeight + "px";
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.classList.add('rotate-180');
             }
         }
 
-        // 8. 智能表單邏輯：只有當參加人數 > 0 時才顯示連動欄位
-        function handleAttendanceChange(selectElement) {
-            const val = parseInt(selectElement.value, 10);
+        // Smart Form Logic
+        function handleAttendanceChange(selectEl) {
+            const val = parseInt(selectEl.value, 10);
             const conditionalBlock = document.getElementById('conditionalFields');
-            if (val > 0) {
+            if (!isNaN(val) && val > 0) {
                 conditionalBlock.style.display = 'block';
             } else {
                 conditionalBlock.style.display = 'none';
             }
         }
 
-        // 2. 倒數計時器（倒數至 2027年01月02日 上午 10:10 證婚開始）
-        const weddingDate = new Date('2027-01-02T10:10:00').getTime();
+        // Form Success Handling
+        function showSuccessMessage() {
+            const form = document.getElementById('rsvpForm');
+            const banner = document.getElementById('successBanner');
+            form.reset();
+            document.getElementById('conditionalFields').style.display = 'none';
+            banner.classList.remove('hidden');
+            submitted = false;
+            banner.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Countdown Timer Logic (Target: 2027-01-02 10:10:00)
+        const targetDate = new Date('2027-01-02T10:10:00').getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
-            const distance = weddingDate - now;
+            const diff = targetDate - now;
 
-            if (distance < 0) {
+            if (diff <= 0) {
                 document.getElementById('days').innerText = '00';
                 document.getElementById('hours').innerText = '00';
                 document.getElementById('minutes').innerText = '00';
@@ -619,15 +649,15 @@
                 return;
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-            document.getElementById('days').innerText = String(days).padStart(2, '0');
-            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+            document.getElementById('days').innerText = String(d).padStart(2, '0');
+            document.getElementById('hours').innerText = String(h).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(m).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(s).padStart(2, '0');
         }
 
         setInterval(updateCountdown, 1000);
