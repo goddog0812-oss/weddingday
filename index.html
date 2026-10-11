@@ -481,14 +481,15 @@
             </div>
         </section>
 
-        <!-- 4, 5, 8. 智能表單與隱藏式 Iframe 提交技術 -->
+<!-- 4, 5, 8. 智能表單與隱藏式 Iframe 提交技術 -->
         <section id="rsvp">
             <h2 class="section-title">RSVP 回函</h2>
             
-            <!-- 5. 隱藏式 Iframe 技術（已提取乾淨的 ID，無預填、無 AAAA） -->
+            <!-- 5. 隱藏式 Iframe 技術：名稱與 target 互相呼應 -->
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { alert('感謝您的填寫，回函已成功送出！'); document.getElementById('rsvpForm').reset(); document.getElementById('conditionalFields').style.display='none'; submitted=false; }"></iframe>
 
-            <form class="rsvp-form" id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSc2MUUup08OldAfG4l5odxc6iHvbi-nuqgA2ZLY2T7CDU4I1A/fromResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+            <!-- 使用您提供的正確 Google 表單 action 網址，配合 entry 欄位 -->
+            <form class="rsvp-form" id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSc2MUUup08OldAfG4l5odxc6iHvbi-nuqgA2ZLY2T7CDU4I1A/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
                 
                 <!-- 基礎輸入框（純空，中英雙語標籤） -->
                 <div class="form-group">
@@ -529,17 +530,21 @@
                         <label for="entry.5">是否需要兒童椅 HIGH CHAIR NEEDED</label>
                         <select id="entry.5" name="entry.5">
                             <option value="不需要" selected>不需要</option>
-                            <option value="需要 1 張">需要 1 張</option>
-                            <option value="需要 2 張">需要 2 張</option>
+                            <option value="1張">1張</option>
+                            <option value="2張">2張</option>
+                            <option value="3張">3張</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="entry.6">賓客身份 RELATIONSHIP</label>
                         <select id="entry.6" name="entry.6">
-                            <option value="男方親友" selected>男方親友</option>
-                            <option value="女方親友">女方親友</option>
-                            <option value="共同好友">共同好友</option>
+                            <option value="男方家人親戚" selected>男方家人親戚</option>
+                            <option value="男方長官同事">男方長官同事</option>
+                            <option value="男方朋友">男方朋友</option>
+                            <option value="女方家人親戚">女方家人親戚</option>
+                            <option value="女方長官同事">女方長官同事</option>
+                            <option value="女方朋友">女方朋友</option>
                         </select>
                     </div>
 
