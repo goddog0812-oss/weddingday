@@ -481,15 +481,13 @@
             </div>
         </section>
 
-        <!-- 4, 5, 8. 智能表單與隱藏式 Iframe 提交技術 -->
-        <section id="rsvp">
-            <h2 class="section-title">RSVP 回函</h2>
+        <!-- 6. Smart RSVP Form with Hidden Iframe Submission -->
         <section id="rsvp" class="py-12">
             <h2 class="text-center font-cormorant text-3xl sm:text-4xl text-morandi-warm tracking-widest mb-10">RSVP 出席回函</h2>
 
-            <!-- 5. 隱藏式 Iframe 技術：名稱與 target 互相呼應 -->
+            <!-- Hidden Iframe Target -->
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){ showSuccessMessage(); }"></iframe>
-            <!-- 使用您提供的正確 Google 表單 action 網址，配合 entry 欄位 -->
+
             <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSc2MUUup08OldAfG4l5odxc6iHvbi-nuqgA2ZLY2T7CDU4I1A/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;" class="bg-white rounded-2xl p-6 sm:p-10 shadow-lg shadow-morandi-sage/10 border border-morandi-gray/40">
 
                 <!-- 姓名 NAME -->
@@ -577,7 +575,7 @@
 
                 </div>
 
-               <button type="submit" class="w-full py-4 rounded-xl bg-morandi-warm hover:bg-morandi-warmHover text-white font-semibold tracking-widest transition-all duration-300 shadow-md hover:shadow-lg">
+                <button type="submit" class="w-full py-4 rounded-xl bg-morandi-warm hover:bg-morandi-warmHover text-white font-semibold tracking-widest transition-all duration-300 shadow-md hover:shadow-lg">
                     確認送出 SUBMIT
                 </button>
             </form>
@@ -591,44 +589,59 @@
 
     </main>
 
-    <footer>
-        <p>&copy; 2027 LEE-YU-JU & LIU-KAI-YING. All Rights Reserved.</p>
+    <!-- Footer -->
+    <footer class="py-8 text-center text-xs text-morandi-sage tracking-widest border-t border-morandi-gray">
+        <p>&copy; 2027 LEE-YU-JU & LIU-KAI-YING. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <!-- JavaScript 互動與倒數計時邏輯 -->
+    <!-- Interactive Scripts -->
     <script>
         let submitted = false;
 
-        // 7. 摺疊面板互動邏輯
-        function toggleAccordion(button) {
-            button.classList.toggle('active');
-            const body = button.nextElementSibling;
-            if (body.style.maxHeight) {
-                body.style.maxHeight = null;
+        // Accordion Toggle
+        function toggleAccordion(btn) {
+            const content = document.getElementById('accordion-content');
+            const icon = document.getElementById('accordion-icon');
+            
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                icon.classList.remove('rotate-180');
             } else {
-                body.style.maxHeight = body.scrollHeight + "px";
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.classList.add('rotate-180');
             }
         }
 
-        // 8. 智能表單邏輯：只有當參加人數 > 0 時才顯示連動欄位
-        function handleAttendanceChange(selectElement) {
-            const val = parseInt(selectElement.value, 10);
+        // Smart Form Logic
+        function handleAttendanceChange(selectEl) {
+            const val = parseInt(selectEl.value, 10);
             const conditionalBlock = document.getElementById('conditionalFields');
-            if (val > 0) {
+            if (!isNaN(val) && val > 0) {
                 conditionalBlock.style.display = 'block';
             } else {
                 conditionalBlock.style.display = 'none';
             }
         }
 
-        // 2. 倒數計時器（倒數至 2027年01月02日 上午 10:10 證婚開始）
-        const weddingDate = new Date('2027-01-02T10:10:00').getTime();
+        // Form Success Handling
+        function showSuccessMessage() {
+            const form = document.getElementById('rsvpForm');
+            const banner = document.getElementById('successBanner');
+            form.reset();
+            document.getElementById('conditionalFields').style.display = 'none';
+            banner.classList.remove('hidden');
+            submitted = false;
+            banner.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Countdown Timer Logic (Target: 2027-01-02 10:10:00)
+        const targetDate = new Date('2027-01-02T10:10:00').getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
-            const distance = weddingDate - now;
+            const diff = targetDate - now;
 
-            if (distance < 0) {
+            if (diff <= 0) {
                 document.getElementById('days').innerText = '00';
                 document.getElementById('hours').innerText = '00';
                 document.getElementById('minutes').innerText = '00';
@@ -636,15 +649,15 @@
                 return;
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-            document.getElementById('days').innerText = String(days).padStart(2, '0');
-            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+            document.getElementById('days').innerText = String(d).padStart(2, '0');
+            document.getElementById('hours').innerText = String(h).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(m).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(s).padStart(2, '0');
         }
 
         setInterval(updateCountdown, 1000);
