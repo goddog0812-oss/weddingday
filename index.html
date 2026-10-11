@@ -3,478 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEE-YU-JU & LIU-KAI-YING 婚禮邀請函</title>
-    <!-- 載入指定字體 Cormorant Garamond & Noto Serif TC -->
+    <title>LEE-YU-JU & LIU-KAI-YING | 婚禮邀請函</title>
+    <!-- Google Fonts: Cormorant Garamond & Noto Serif TC -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+TC:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        morandi: {
+                            warm: '#d4a373',
+                            warmHover: '#bc8a5b',
+                            sage: '#8da399',
+                            bg: '#f9f8f6',
+                            card: '#ffffff',
+                            text: '#4a4541',
+                            gray: '#e9e5df'
+                        }
+                    },
+                    fontFamily: {
+                        cormorant: ['"Cormorant Garamond"', 'serif'],
+                        serif: ['"Noto Serif TC"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --morandi-warm: #d4a373;
-            --morandi-sage: #8da399;
-            --morandi-bg: #f9f8f6;
-            --morandi-card: #ffffff;
-            --morandi-text: #4a4541;
-            --morandi-light-gray: #e9e5df;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
             font-family: 'Noto Serif TC', 'Cormorant Garamond', serif;
-            background-color: var(--morandi-bg);
-            color: var(--morandi-text);
+            background-color: #f9f8f6;
+            color: #4a4541;
             line-height: 1.8;
             overflow-x: hidden;
         }
 
-        /* 1. 導覽列：毛玻璃質感 */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-            background: rgba(249, 248, 246, 0.75);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+        /* Glassmorphism Header */
+        .glass-nav {
+            background: rgba(249, 248, 246, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(212, 163, 115, 0.2);
-            z-index: 1000;
         }
 
-        .nav-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.15rem;
-            letter-spacing: 2px;
-            color: var(--morandi-warm);
-            font-weight: 600;
+        /* Custom Soft Shadow Cards for Timer */
+        .micro-glow-card {
+            background: #ffffff;
+            box-shadow: 0 10px 25px -5px rgba(141, 163, 153, 0.18), 0 8px 10px -6px rgba(212, 163, 115, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.9);
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--morandi-text);
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--morandi-warm);
-        }
-
-        /* 3. 首頁全螢幕封面背景 */
-        .hero-section {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            background: url('https://i.postimg.cc/gcQPdMsD/S-77979937-0.jpg') no-repeat center center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            text-align: center;
-            padding-bottom: 8vh;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.45));
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            color: #fff;
-            padding: 0 1rem;
-        }
-
-        .hero-content h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            letter-spacing: 3px;
-            margin-bottom: 0.5rem;
-            font-weight: 400;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero-content p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            letter-spacing: 4px;
-            font-weight: 300;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-
-        /* 內容區容器 */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-
-        section {
-            padding: 4rem 1rem;
-            border-bottom: 1px solid var(--morandi-light-gray);
-        }
-
-        h2.section-title {
-            text-align: center;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
-            color: var(--morandi-warm);
-            margin-bottom: 3rem;
-            letter-spacing: 2px;
-        }
-
-        /* 3. 垂直 V-Card 設計與資訊排版 */
-        .v-card {
-            background: var(--morandi-card);
-            border-radius: 12px;
-            padding: 3rem 2.5rem;
-            box-shadow: 0 10px 30px rgba(141, 163, 153, 0.12);
-            margin-bottom: 2rem;
-        }
-
-        .info-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px dashed var(--morandi-light-gray);
-            padding-bottom: 1rem;
-        }
-
-        .info-label {
-            font-weight: 600;
-            color: var(--morandi-sage);
-            letter-spacing: 1px;
-        }
-
-        .info-value {
-            text-align: right;
-        }
-
-        /* 6. 手機版視覺優化：強制關鍵地點與地址不自動斷行 */
+        /* Prevent auto text wrapping for address and key locations on mobile */
         .no-wrap {
             white-space: nowrap;
         }
 
-        /* 2. 計時器視覺 (極重要) - 白色微光卡片與優化陰影/細線 */
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.2rem;
-            margin: 3rem 0;
-            flex-wrap: wrap;
-        }
-
-        .countdown-box {
-            background: var(--morandi-card);
-            padding: 1.2rem 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(141, 163, 153, 0.15);
-            text-align: center;
-            min-width: 85px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-        }
-
-        .countdown-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.3rem;
-            color: var(--morandi-warm);
-            font-weight: 600;
-            display: block;
-            line-height: 1;
-        }
-
-        .countdown-label {
-            font-size: 0.75rem;
-            color: var(--morandi-sage);
-            letter-spacing: 1.5px;
-            margin-top: 0.5rem;
-            display: block;
-        }
-
-        .countdown-separator {
-            width: 1px;
-            height: 45px;
-            background-color: var(--morandi-warm);
-            opacity: 0.3;
-        }
-
-        /* 7. 互動細節：摺疊式面板 (Accordion) */
-        .accordion {
-            background: var(--morandi-card);
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(141, 163, 153, 0.08);
-            margin-top: 1.5rem;
-            overflow: hidden;
-        }
-
-        .accordion-header {
-            width: 100%;
-            padding: 1.2rem 1.5rem;
-            background: none;
-            border: none;
-            text-align: left;
-            font-size: 1rem;
-            font-family: 'Noto Serif TC', serif;
-            color: var(--morandi-text);
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.3s ease;
-        }
-
-        .accordion-header:hover {
-            background-color: rgba(212, 163, 115, 0.05);
-        }
-
-        .accordion-header::after {
-            content: '+';
-            font-size: 1.2rem;
-            color: var(--morandi-warm);
-            transition: transform 0.3s ease;
-        }
-
-        .accordion-header.active::after {
-            transform: rotate(45deg);
-        }
-
-        .accordion-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            padding: 0 1.5rem;
-            background-color: #fff;
-        }
-
-        .accordion-content {
-            padding: 1.2rem 0;
-            border-top: 1px solid var(--morandi-light-gray);
-            font-size: 0.95rem;
-        }
-
-        /* 智慧表單樣式 */
-        .rsvp-form {
-            background: var(--morandi-card);
-            padding: 3rem 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(141, 163, 153, 0.12);
-        }
-
-        .form-group {
-            margin-bottom: 1.8rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--morandi-text);
-            letter-spacing: 0.5px;
-        }
-
-        .form-group input, 
-        .form-group select, 
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--morandi-light-gray);
-            border-radius: 6px;
-            font-family: 'Noto Serif TC', serif;
-            background-color: var(--morandi-bg);
-            color: var(--morandi-text);
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus, 
-        .form-group select:focus, 
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--morandi-warm);
-        }
-
-        .submit-btn {
-            background-color: var(--morandi-warm);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            width: 100%;
-            font-size: 1rem;
-            font-family: 'Noto Serif TC', serif;
-            letter-spacing: 2px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background-color: #bc8a5b;
-        }
-
-        /* 8. 智能表單條件控制區塊預設隱藏 */
+        /* Conditional form animation */
         .conditional-field {
             display: none;
-            animation: fadeIn 0.4s ease;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
+            from { opacity: 0; transform: translateY(-8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        footer {
-            text-align: center;
-            padding: 3rem 0;
-            font-size: 0.85rem;
-            color: var(--morandi-sage);
-            letter-spacing: 1px;
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        /* RWD 手機版適應調整 */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .countdown-container {
-                gap: 0.6rem;
-            }
-            .countdown-box {
-                padding: 0.8rem 0.8rem;
-                min-width: 65px;
-            }
-            .countdown-number {
-                font-size: 1.6rem;
-            }
-            .countdown-separator {
-                height: 30px;
-            }
-            .v-card, .rsvp-form {
-                padding: 2rem 1.2rem;
-            }
+        ::-webkit-scrollbar-track {
+            background: #f9f8f6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4a373;
+            border-radius: 4px;
         }
     </style>
 </head>
-<body>
+<body class="antialiased selection:bg-morandi-warm selection:text-white">
 
-    <!-- 1. 導覽列 -->
-    <header>
-        <div class="nav-logo">LEE & LIU</div>
-        <ul class="nav-links">
-            <li><a href="#about">關於我們</a></li>
-            <li><a href="#details">婚禮詳情</a></li>
-            <li><a href="#rsvp">出席回函</a></li>
-        </ul>
+    <!-- 1. Fixed Glassmorphism Navbar -->
+    <header class="glass-nav fixed top-0 left-0 w-full h-[70px] z-50 px-6 sm:px-12 flex justify-between items-center transition-all duration-300">
+        <a href="#home" class="font-cormorant text-lg sm:text-xl font-semibold tracking-widest text-morandi-warm">LEE & LIU</a>
+        <nav>
+            <ul class="flex gap-6 sm:gap-10 text-xs sm:text-sm tracking-wider font-medium">
+                <li><a href="#about" class="hover:text-morandi-warm transition-colors duration-200">關於我們</a></li>
+                <li><a href="#details" class="hover:text-morandi-warm transition-colors duration-200">婚禮詳情</a></li>
+                <li><a href="#rsvp" class="hover:text-morandi-warm transition-colors duration-200">出席回函</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- 3. 全螢幕封面 -->
-    <section class="hero-section" id="home">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>LEE-YU-JU & LIU-KAI-YING</h1>
-            <p>我們決定，愛上彼此一萬年</p>
+    <!-- 2. Fullscreen Cover Section -->
+    <section id="home" class="relative w-full h-screen bg-cover bg-center flex flex-col justify-end items-center text-center pb-20 sm:pb-24" style="background-image: url('https://i.postimg.cc/gcQPdMsD/S-77979937-0.jpg');">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/20 z-0"></div>
+        <div class="relative z-10 text-white px-4">
+            <h1 class="font-cormorant text-2xl sm:text-4xl md:text-5xl font-normal tracking-[0.2em] mb-3 drop-shadow-md">
+                LEE-YU-JU & LIU-KAI-YING
+            </h1>
+            <p class="text-sm sm:text-lg font-light tracking-[0.3em] text-morandi-bg/90 drop-shadow">
+                我們決定，愛上彼此一萬年
+            </p>
+            <div class="mt-8">
+                <a href="#rsvp" class="inline-block px-8 py-3 rounded-full bg-morandi-warm/90 hover:bg-morandi-warm text-white text-xs sm:text-sm tracking-widest shadow-lg backdrop-blur-sm transition-all duration-300 transform hover:-translate-y-0.5">
+                    誠摯邀請 RSVP
+                </a>
+            </div>
         </div>
     </section>
 
-    <div class="container">
+    <!-- Main Content Container -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
 
-        <!-- 關於我們區塊 -->
-        <section id="about">
-            <h2 class="section-title">About Us</h2>
-            <div class="v-card">
-                <p style="text-align: center; font-size: 1.05rem; line-height: 2;">
+        <!-- About Us Section -->
+        <section id="about" class="py-12 border-b border-morandi-gray/60">
+            <h2 class="text-center font-cormorant text-3xl sm:text-4xl text-morandi-warm tracking-widest mb-8">About Us</h2>
+            <div class="bg-white rounded-2xl p-8 sm:p-12 shadow-sm border border-morandi-gray/40 text-center">
+                <p class="text-base sm:text-lg leading-relaxed text-morandi-text font-light">
                     在漫漫的時間長河中，能夠遇見彼此是最大的幸運。<br>
                     我們決定攜手走向未來的每一天，誠摯地邀請您一同見證我們的幸福時刻。
                 </p>
             </div>
         </section>
 
-        <!-- 2. 藝術感倒數計時器 (倒數至 2027年01月02日 10:10 戶外證婚開始) -->
-        <section style="border: none; text-align: center;">
-            <h3 style="font-family: 'Cormorant Garamond'; font-size: 1.5rem; color: var(--morandi-sage); letter-spacing: 2px;">COUNTDOWN TO OUR WEDDING</h3>
-            <div class="countdown-container">
-                <div class="countdown-box">
-                    <span class="countdown-number" id="days">00</span>
-                    <span class="countdown-label">DAYS</span>
+        <!-- 3. Micro-Glow Countdown Timer -->
+        <section class="py-12 border-b border-morandi-gray/60 text-center">
+            <h3 class="font-cormorant text-xl tracking-[0.2em] text-morandi-sage uppercase mb-8">Countdown to Our Wedding</h3>
+            
+            <div class="flex justify-center items-center gap-2 sm:gap-6 flex-wrap">
+                <!-- Days -->
+                <div class="micro-glow-card rounded-2xl px-4 py-4 sm:px-6 sm:py-5 min-w-[75px] sm:min-w-[100px]">
+                    <span id="days" class="font-cormorant text-3xl sm:text-5xl font-semibold text-morandi-warm block leading-none">00</span>
+                    <span class="text-[10px] sm:text-xs text-morandi-sage tracking-widest uppercase mt-2 block font-medium">Days</span>
                 </div>
-                <div class="countdown-separator"></div>
-                <div class="countdown-box">
-                    <span class="countdown-number" id="hours">00</span>
-                    <span class="countdown-label">HOURS</span>
+                
+                <div class="w-[1px] h-10 sm:h-14 bg-morandi-warm/40"></div>
+
+                <!-- Hours -->
+                <div class="micro-glow-card rounded-2xl px-4 py-4 sm:px-6 sm:py-5 min-w-[75px] sm:min-w-[100px]">
+                    <span id="hours" class="font-cormorant text-3xl sm:text-5xl font-semibold text-morandi-warm block leading-none">00</span>
+                    <span class="text-[10px] sm:text-xs text-morandi-sage tracking-widest uppercase mt-2 block font-medium">Hours</span>
                 </div>
-                <div class="countdown-separator"></div>
-                <div class="countdown-box">
-                    <span class="countdown-number" id="minutes">00</span>
-                    <span class="countdown-label">MINUTES</span>
+
+                <div class="w-[1px] h-10 sm:h-14 bg-morandi-warm/40"></div>
+
+                <!-- Minutes -->
+                <div class="micro-glow-card rounded-2xl px-4 py-4 sm:px-6 sm:py-5 min-w-[75px] sm:min-w-[100px]">
+                    <span id="minutes" class="font-cormorant text-3xl sm:text-5xl font-semibold text-morandi-warm block leading-none">00</span>
+                    <span class="text-[10px] sm:text-xs text-morandi-sage tracking-widest uppercase mt-2 block font-medium">Minutes</span>
                 </div>
-                <div class="countdown-separator"></div>
-                <div class="countdown-box">
-                    <span class="countdown-number" id="seconds">00</span>
-                    <span class="countdown-label">SECONDS</span>
+
+                <div class="w-[1px] h-10 sm:h-14 bg-morandi-warm/40"></div>
+
+                <!-- Seconds -->
+                <div class="micro-glow-card rounded-2xl px-4 py-4 sm:px-6 sm:py-5 min-w-[75px] sm:min-w-[100px]">
+                    <span id="seconds" class="font-cormorant text-3xl sm:text-5xl font-semibold text-morandi-warm block leading-none">00</span>
+                    <span class="text-[10px] sm:text-xs text-morandi-sage tracking-widest uppercase mt-2 block font-medium">Seconds</span>
                 </div>
             </div>
         </section>
 
-        <!-- 3. 婚禮詳情 V-Card & 7. 交通指引摺疊面板 -->
-        <section id="details">
-            <h2 class="section-title">Wedding Details</h2>
-            
-            <div class="v-card">
-                <div class="info-grid">
-                    <div class="info-item">
-                        <span class="info-label">DATE 婚禮日期</span>
-                        <span class="info-value no-wrap">2027 年 01 月 02 日 (星期六)</span>
+        <!-- 4. Wedding Details Section (Vertical V-Card & Accordion) -->
+        <section id="details" class="py-12 border-b border-morandi-gray/60">
+            <h2 class="text-center font-cormorant text-3xl sm:text-4xl text-morandi-warm tracking-widest mb-10">Wedding Details</h2>
+
+            <!-- V-Card -->
+            <div class="bg-white rounded-2xl p-6 sm:p-10 shadow-lg shadow-morandi-sage/10 border border-morandi-gray/40 mb-8">
+                <div class="divide-y divide-dashed divide-morandi-gray">
+                    
+                    <div class="py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1">
+                        <span class="font-semibold text-morandi-sage tracking-wider text-sm sm:text-base">DATE 婚禮日期</span>
+                        <span class="no-wrap text-morandi-text text-right font-medium">2027 年 01 月 02 日 (星期六)</span>
                     </div>
-                    <div class="info-item">
-                        <span class="info-label">CEREMONY 戶外證婚</span>
-                        <span class="info-value no-wrap">上午 10:10 </span>
+
+                    <div class="py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1">
+                        <span class="font-semibold text-morandi-sage tracking-wider text-sm sm:text-base">CEREMONY 戶外證婚</span>
+                        <span class="no-wrap text-morandi-text text-right font-medium">上午 10:10 </span>
                     </div>
-                    <div class="info-item">
-                        <span class="info-label">BANQUET 午宴開席</span>
-                        <span class="info-value no-wrap">中午 12:00 入席</span>
+
+                    <div class="py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1">
+                        <span class="font-semibold text-morandi-sage tracking-wider text-sm sm:text-base">BANQUET 午宴開席</span>
+                        <span class="no-wrap text-morandi-text text-right font-medium">中午 12:00 入席</span>
                     </div>
-                    <div class="info-item">
-                        <span class="info-label">DRESS CODE 服裝規範</span>
-                        <span class="info-value no-wrap">Luminous Blue (璀璨寶藍) / Mocha Mousse (摩卡慕斯)</span>
+
+                    <div class="py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1">
+                        <span class="font-semibold text-morandi-sage tracking-wider text-sm sm:text-base">DRESS CODE 服裝穿搭</span>
+                        <span class="no-wrap text-morandi-text text-right font-medium">2027年度色-璀璨寶藍/2022年度色- 長春花藍</span>
                     </div>
+
                 </div>
 
-                <!-- 7. 交通指引摺疊式面板 (Accordion) -->
-                <div class="accordion">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">交通指引與場地資訊 (Transportation Guide)</button>
-                    <div class="accordion-body">
-                        <div class="accordion-content">
-                            <p style="margin-bottom: 0.8rem;"><b>場地名稱：</b> <span class="no-wrap">大溪威斯汀 豪華宴會廳</span></p>
-                            <p style="margin-bottom: 0.8rem;"><b>會場地址：</b> <span class="no-wrap">335 桃園市大溪區永福里日新路 166 號</span></p>
-                            <p><b>交通指引：</b> 飯店備有完善之專屬停車空間，亦可由國道三號大溪交流道下接台 3 線前往，交通便捷。</p>
+                <!-- 5. Transportation Accordion Panel -->
+                <div class="mt-8 border border-morandi-gray/80 rounded-xl overflow-hidden bg-morandi-bg/40">
+                    <button type="button" onclick="toggleAccordion(this)" class="w-full px-6 py-4 text-left flex justify-between items-center font-semibold text-morandi-text hover:bg-morandi-warm/10 transition-colors duration-200">
+                        <span class="no-wrap text-sm sm:text-base">交通指引與場地資訊 (Transportation Guide)</span>
+                        <svg id="accordion-icon" class="w-5 h-5 text-morandi-warm transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="accordion-content" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-white px-6">
+                        <div class="py-5 border-t border-morandi-gray/60 text-sm space-y-3 leading-relaxed">
+                            <p><strong class="text-morandi-sage">場地名稱：</strong><span class="no-wrap">大溪威斯汀 豪華宴會廳</span></p>
+                            <p><strong class="text-morandi-sage">會場地址：</strong><span class="no-wrap">335 桃園市大溪區永福里日新路 166 號</span></p>
+                            <p><strong class="text-morandi-sage">交通建議：</strong>飯店備有賓客專屬停車場。駕駛者可經由國道三號大溪交流道下，轉接台 3 線即可抵達。</p>
                         </div>
                     </div>
                 </div>
@@ -664,4 +401,3 @@
         updateCountdown();
     </script>
 </body>
-</html>
