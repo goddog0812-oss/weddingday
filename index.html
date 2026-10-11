@@ -463,7 +463,7 @@
                     </div>
                     <div class="info-item">
                         <span class="info-label">DRESS CODE 服裝規範</span>
-                        <span class="info-value no-wrap">Luminous Blue (璀璨寶藍)</span>
+                        <span class="info-value no-wrap">Luminous Blue (璀璨寶藍) / Mocha Mousse (摩卡慕斯)</span>
                     </div>
                 </div>
 
@@ -474,7 +474,7 @@
                         <div class="accordion-content">
                             <p style="margin-bottom: 0.8rem;"><b>場地名稱：</b> <span class="no-wrap">大溪威斯汀 豪華宴會廳</span></p>
                             <p style="margin-bottom: 0.8rem;"><b>會場地址：</b> <span class="no-wrap">335 桃園市大溪區永福里日新路 166 號</span></p>
-                            <p><b>交通指引：</b> 飯店備有完善之專屬停車空間，亦可由北二高大溪交流道下接台 3 線前往，交通便利。</p>
+                            <p><b>交通指引：</b> 飯店備有完善之專屬停車空間，亦可由國道三號大溪交流道下接台 3 線前往，交通便捷。</p>
                         </div>
                     </div>
                 </div>
@@ -485,7 +485,7 @@
         <section id="rsvp">
             <h2 class="section-title">RSVP 回函</h2>
             
-            <!-- 5. 隱藏式 Iframe 技術（無跳轉無預填） -->
+            <!-- 5. 隱藏式 Iframe 技術（已提取乾淨的 ID，無預填、無 AAAA） -->
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { alert('感謝您的填寫，回函已成功送出！'); document.getElementById('rsvpForm').reset(); document.getElementById('conditionalFields').style.display='none'; submitted=false; }"></iframe>
 
             <form class="rsvp-form" id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSc2MUUup08OldAfG4l5odxc6iHvbi-nuqgA2ZLY2T7CDU4I1A/fromResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
@@ -513,7 +513,7 @@
                     </select>
                 </div>
 
-                <!-- 8. 智能表單邏輯：參加人數 > 0 時才顯示以下 6 個動態欄位 -->
+                <!-- 8. 智能表單邏輯：參加人數 > 0 時才顯示以下動態欄位 -->
                 <div id="conditionalFields" class="conditional-field">
                     
                     <div class="form-group">
