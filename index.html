@@ -481,13 +481,15 @@
             </div>
         </section>
 
- <!-- 6. Smart RSVP Form with Hidden Iframe Submission -->
+<!-- 4, 5, 8. 智能表單與隱藏式 Iframe 提交技術 -->
+        <section id="rsvp">
+            <h2 class="section-title">RSVP 回函</h2>
         <section id="rsvp" class="py-12">
             <h2 class="text-center font-cormorant text-3xl sm:text-4xl text-morandi-warm tracking-widest mb-10">RSVP 出席回函</h2>
 
-            <!-- Hidden Iframe Target -->
+<!-- 5. 隱藏式 Iframe 技術：名稱與 target 互相呼應 -->
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){ showSuccessMessage(); }"></iframe>
-
+<!-- 使用您提供的正確 Google 表單 action 網址，配合 entry 欄位 -->
             <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSc2MUUup08OldAfG4l5odxc6iHvbi-nuqgA2ZLY2T7CDU4I1A/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;" class="bg-white rounded-2xl p-6 sm:p-10 shadow-lg shadow-morandi-sage/10 border border-morandi-gray/40">
 
                 <!-- 姓名 NAME -->
